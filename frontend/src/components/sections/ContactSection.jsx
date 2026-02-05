@@ -78,9 +78,9 @@ const ContactSection = ({ data }) => {
               Get In Touch
             </h3>
             <p className="text-gray-600 leading-relaxed mb-8">
-              I'm always interested in new opportunities and exciting projects. 
+              I&apos;m always interested in new opportunities and exciting projects. 
               Whether you have a specific project in mind or just want to explore possibilities, 
-              let's start a conversation.
+              let&apos;s start a conversation.
             </p>
           </div>
 
