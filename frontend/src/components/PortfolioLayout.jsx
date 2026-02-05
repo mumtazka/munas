@@ -15,56 +15,58 @@ const PortfolioLayout = () => {
   const contentRef = useRef(null);
 
   useEffect(() => {
-    // Temporarily disable GSAP animations for debugging
-    // const setupAnimations = () => {
-    //   // Hero image animation on scroll
-    //   gsap.timeline({
-    //     scrollTrigger: {
-    //       trigger: mainRef.current,
-    //       start: "top top",
-    //       end: "+=100vh",
-    //       scrub: 1,
-    //       pin: false,
-    //     }
-    //   })
-    //   .to(heroImageRef.current, {
-    //     scale: 0.4,
-    //     x: -200,
-    //     y: -100,
-    //     duration: 1,
-    //     ease: "power2.out"
-    //   })
-    //   .to(sidebarRef.current, {
-    //     x: 0,
-    //     opacity: 1,
-    //     duration: 0.8,
-    //     ease: "power2.out"
-    //   }, "-=0.5");
+    const setupAnimations = () => {
+      // Initial state - sidebar hidden
+      gsap.set(sidebarRef.current, {
+        x: -100,
+        opacity: 0
+      });
+      
+      gsap.set(contentRef.current, {
+        opacity: 0,
+        x: 50
+      });
 
-    //   // Content fade in
-    //   gsap.fromTo(contentRef.current, 
-    //     { opacity: 0, x: 50 },
-    //     {
-    //       opacity: 1,
-    //       x: 0,
-    //       duration: 1,
-    //       ease: "power2.out",
-    //       scrollTrigger: {
-    //         trigger: contentRef.current,
-    //         start: "top 80%",
-    //         end: "bottom 20%",
-    //       }
-    //     }
-    //   );
-    // };
+      // Hero image animation on scroll
+      const heroTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: mainRef.current,
+          start: "top top",
+          end: "+=100vh",
+          scrub: 1,
+          pin: false,
+        }
+      });
+      
+      heroTl
+        .to(heroImageRef.current, {
+          scale: 0.4,
+          x: -300,
+          y: -150,
+          duration: 1,
+          ease: "power2.out"
+        })
+        .to(sidebarRef.current, {
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power2.out"
+        }, "-=0.5")
+        .to(contentRef.current, {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          ease: "power2.out"
+        }, "-=0.3");
+    };
 
-    // // Small delay to ensure DOM is ready
-    // const timer = setTimeout(setupAnimations, 100);
+    // Small delay to ensure DOM is ready
+    const timer = setTimeout(setupAnimations, 100);
 
-    // return () => {
-    //   clearTimeout(timer);
-    //   ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    // };
+    return () => {
+      clearTimeout(timer);
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
   }, []);
 
   return (
