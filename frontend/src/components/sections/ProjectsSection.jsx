@@ -1,62 +1,47 @@
 import React from 'react';
 import { ExternalLink, Github } from 'lucide-react';
-import { Button } from '../ui/button';
 
 const ProjectCard = ({ project, isFeatured = false }) => (
-  <div className={`group bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 ${
-    isFeatured ? 'md:col-span-2' : ''
-  }`}>
-    <div className="aspect-video overflow-hidden">
-      <img
-        src={project.image}
-        alt={project.title}
-        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-      />
-    </div>
-    
-    <div className="p-8">
-      <h3 className={`font-bold text-gray-900 mb-3 ${
+  <div className="space-y-6 border-b border-gray-100 pb-12 last:border-b-0">
+    <div className="flex justify-between items-start">
+      <h3 className={`font-medium text-gray-900 ${
         isFeatured ? 'text-2xl' : 'text-xl'
       }`}>
         {project.title}
       </h3>
       
-      <p className="text-gray-600 mb-6 leading-relaxed">
-        {project.description}
-      </p>
-      
-      <div className="flex flex-wrap gap-2 mb-6">
-        {project.technologies.map((tech) => (
-          <span
-            key={tech}
-            className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full"
-          >
-            {tech}
-          </span>
-        ))}
-      </div>
-      
-      <div className="flex space-x-4">
-        <Button
-          variant="outline"
-          size="sm"
-          className="flex items-center space-x-2 border-gray-300 hover:border-gray-500"
+      <div className="flex space-x-4 text-sm">
+        <button
           onClick={() => window.open(project.liveUrl, '_blank')}
+          className="flex items-center space-x-1 text-gray-600 hover:text-gray-900 transition-colors"
         >
           <ExternalLink className="w-4 h-4" />
-          <span>Live Demo</span>
-        </Button>
+          <span>Live</span>
+        </button>
         
-        <Button
-          variant="outline"
-          size="sm"
-          className="flex items-center space-x-2 border-gray-300 hover:border-gray-500"
+        <button
           onClick={() => window.open(project.githubUrl, '_blank')}
+          className="flex items-center space-x-1 text-gray-600 hover:text-gray-900 transition-colors"
         >
           <Github className="w-4 h-4" />
           <span>Code</span>
-        </Button>
+        </button>
       </div>
+    </div>
+    
+    <p className="text-gray-700 leading-relaxed font-light max-w-3xl">
+      {project.description}
+    </p>
+    
+    <div className="flex flex-wrap gap-2">
+      {project.technologies.map((tech) => (
+        <span
+          key={tech}
+          className="text-sm text-gray-600 bg-gray-50 px-2 py-1 rounded font-light"
+        >
+          {tech}
+        </span>
+      ))}
     </div>
   </div>
 );
@@ -67,34 +52,31 @@ const ProjectsSection = ({ data }) => {
   const otherProjects = projects.filter(project => !project.featured);
 
   return (
-    <div className="space-y-12">
-      <div className="text-center">
-        <h2 className="text-4xl font-bold text-gray-900 mb-4">
-          Featured Projects
+    <div className="space-y-16">
+      <div className="space-y-4">
+        <h2 className="text-4xl font-light text-gray-900">
+          Selected Work
         </h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <p className="text-lg text-gray-600 font-light">
           A selection of projects that showcase my skills and passion for creating meaningful digital experiences.
         </p>
-        <div className="w-24 h-1 bg-gray-900 mx-auto mt-6"></div>
       </div>
 
-      {/* Featured Projects */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="space-y-12">
         {featuredProjects.map((project) => (
           <ProjectCard key={project.id} project={project} isFeatured />
         ))}
       </div>
 
-      {/* Other Projects */}
       {otherProjects.length > 0 && (
         <>
-          <div className="text-center mt-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">
+          <div className="space-y-4">
+            <h3 className="text-2xl font-light text-gray-900">
               Other Projects
             </h3>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="space-y-12">
             {otherProjects.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
@@ -102,17 +84,17 @@ const ProjectsSection = ({ data }) => {
         </>
       )}
 
-      <div className="text-center mt-16">
-        <p className="text-gray-600 mb-6">
-          Want to see more of my work?
+      <div className="pt-8">
+        <p className="text-gray-500 text-sm font-light">
+          Want to see more of my work? Visit my{' '}
+          <button
+            onClick={() => window.open('https://github.com/alexmorgan', '_blank')}
+            className="text-gray-900 hover:underline"
+          >
+            GitHub profile
+          </button>
+          .
         </p>
-        <Button
-          variant="outline"
-          className="border-gray-300 hover:border-gray-500"
-          onClick={() => window.open('https://github.com/alexmorgan', '_blank')}
-        >
-          View All Projects on GitHub
-        </Button>
       </div>
     </div>
   );

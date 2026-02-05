@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
-import { Button } from '../ui/button';
+import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { useToast } from '../../hooks/use-toast';
@@ -37,81 +36,72 @@ const ContactSection = ({ data }) => {
     }, 1500);
   };
 
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: 'Email',
-      value: personal.email,
-      href: `mailto:${personal.email}`
-    },
-    {
-      icon: Phone,
-      label: 'Phone',
-      value: personal.phone,
-      href: `tel:${personal.phone}`
-    },
-    {
-      icon: MapPin,
-      label: 'Location',
-      value: personal.location,
-      href: null
-    }
-  ];
-
   return (
-    <div className="space-y-12">
-      <div className="text-center">
-        <h2 className="text-4xl font-bold text-gray-900 mb-4">
-          Let's Work Together
+    <div className="space-y-16">
+      <div className="space-y-4">
+        <h2 className="text-4xl font-light text-gray-900">
+          Let&apos;s Work Together
         </h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Have a project in mind or just want to chat? I'd love to hear from you.
+        <p className="text-lg text-gray-600 font-light">
+          Have a project in mind or just want to chat? I&apos;d love to hear from you.
         </p>
-        <div className="w-24 h-1 bg-gray-900 mx-auto mt-6"></div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
         {/* Contact Information */}
-        <div className="space-y-8">
-          <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+        <div className="space-y-12">
+          <div className="space-y-6">
+            <h3 className="text-2xl font-light text-gray-900">
               Get In Touch
             </h3>
-            <p className="text-gray-600 leading-relaxed mb-8">
+            <p className="text-gray-600 leading-relaxed font-light">
               I&apos;m always interested in new opportunities and exciting projects. 
               Whether you have a specific project in mind or just want to explore possibilities, 
               let&apos;s start a conversation.
             </p>
           </div>
 
-          <div className="space-y-4">
-            {contactInfo.map(({ icon: Icon, label, value, href }) => (
-              <div key={label} className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
-                  <Icon className="w-5 h-5 text-gray-600" />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500 font-medium">{label}</p>
-                  {href ? (
-                    <a
-                      href={href}
-                      className="text-gray-900 hover:text-gray-600 transition-colors"
-                    >
-                      {value}
-                    </a>
-                  ) : (
-                    <p className="text-gray-900">{value}</p>
-                  )}
-                </div>
+          <div className="space-y-6">
+            <div className="flex items-center space-x-4">
+              <Mail className="w-5 h-5 text-gray-400" />
+              <div>
+                <p className="text-sm text-gray-500 font-light">Email</p>
+                <a
+                  href={`mailto:${personal.email}`}
+                  className="text-gray-900 hover:text-gray-600 transition-colors font-light"
+                >
+                  {personal.email}
+                </a>
               </div>
-            ))}
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              <Phone className="w-5 h-5 text-gray-400" />
+              <div>
+                <p className="text-sm text-gray-500 font-light">Phone</p>
+                <a
+                  href={`tel:${personal.phone}`}
+                  className="text-gray-900 hover:text-gray-600 transition-colors font-light"
+                >
+                  {personal.phone}
+                </a>
+              </div>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              <MapPin className="w-5 h-5 text-gray-400" />
+              <div>
+                <p className="text-sm text-gray-500 font-light">Location</p>
+                <p className="text-gray-900 font-light">{personal.location}</p>
+              </div>
+            </div>
           </div>
 
-          <div className="bg-gray-50 rounded-2xl p-6">
-            <h4 className="font-semibold text-gray-900 mb-3">
+          <div className="pt-4">
+            <h4 className="font-medium text-gray-900 mb-2">
               Response Time
             </h4>
-            <p className="text-gray-600 text-sm">
+            <p className="text-gray-600 text-sm font-light">
               I typically respond to messages within 24 hours. For urgent matters, 
               feel free to call directly.
             </p>
@@ -119,15 +109,15 @@ const ContactSection = ({ data }) => {
         </div>
 
         {/* Contact Form */}
-        <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-          <h3 className="text-xl font-bold text-gray-900 mb-6">
+        <div className="space-y-8">
+          <h3 className="text-2xl font-light text-gray-900">
             Send a Message
           </h3>
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label className="block text-sm text-gray-700 font-medium">
                   Name *
                 </label>
                 <Input
@@ -135,13 +125,13 @@ const ContactSection = ({ data }) => {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="border-gray-300 focus:border-gray-500"
+                  className="border-gray-200 focus:border-gray-400 font-light"
                   placeholder="Your name"
                 />
               </div>
               
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+              <div className="space-y-2">
+                <label className="block text-sm text-gray-700 font-medium">
                   Email *
                 </label>
                 <Input
@@ -150,14 +140,14 @@ const ContactSection = ({ data }) => {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="border-gray-300 focus:border-gray-500"
+                  className="border-gray-200 focus:border-gray-400 font-light"
                   placeholder="your@email.com"
                 />
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="space-y-2">
+              <label className="block text-sm text-gray-700 font-medium">
                 Subject *
               </label>
               <Input
@@ -165,13 +155,13 @@ const ContactSection = ({ data }) => {
                 value={formData.subject}
                 onChange={handleInputChange}
                 required
-                className="border-gray-300 focus:border-gray-500"
+                className="border-gray-200 focus:border-gray-400 font-light"
                 placeholder="What's this about?"
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="space-y-2">
+              <label className="block text-sm text-gray-700 font-medium">
                 Message *
               </label>
               <Textarea
@@ -179,16 +169,16 @@ const ContactSection = ({ data }) => {
                 value={formData.message}
                 onChange={handleInputChange}
                 required
-                rows={5}
-                className="border-gray-300 focus:border-gray-500 resize-none"
+                rows={6}
+                className="border-gray-200 focus:border-gray-400 resize-none font-light"
                 placeholder="Tell me about your project or what you'd like to discuss..."
               />
             </div>
 
-            <Button
+            <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-gray-900 hover:bg-gray-800 text-white py-3"
+              className="w-full bg-gray-900 hover:bg-gray-800 text-white py-3 px-6 transition-colors font-light flex items-center justify-center space-x-2 disabled:opacity-70"
             >
               {isSubmitting ? (
                 <div className="flex items-center space-x-2">
@@ -201,13 +191,13 @@ const ContactSection = ({ data }) => {
                   <span>Send Message</span>
                 </div>
               )}
-            </Button>
+            </button>
           </form>
         </div>
       </div>
 
-      <div className="text-center mt-16">
-        <p className="text-gray-600">
+      <div className="pt-12 border-t border-gray-100">
+        <p className="text-gray-500 text-center font-light">
           Thank you for taking the time to view my portfolio. I look forward to connecting with you!
         </p>
       </div>
