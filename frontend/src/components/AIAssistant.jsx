@@ -66,7 +66,7 @@ const AIAssistant = () => {
 
       {/* Chat Modal */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-40 w-96 h-96 bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden">
+        <div className="fixed bottom-24 right-6 z-50 w-96 h-96 bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden" style={{ zIndex: 9999 }}>
           {/* Header */}
           <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
             <h3 className="font-semibold text-gray-900">Ask AI about Alex</h3>
