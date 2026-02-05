@@ -2,69 +2,69 @@ import React from 'react';
 import { ExternalLink, Github } from 'lucide-react';
 import { Button } from '../ui/button';
 
+const ProjectCard = ({ project, isFeatured = false }) => (
+  <div className={`group bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 ${
+    isFeatured ? 'md:col-span-2' : ''
+  }`}>
+    <div className="aspect-video overflow-hidden">
+      <img
+        src={project.image}
+        alt={project.title}
+        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+      />
+    </div>
+    
+    <div className="p-8">
+      <h3 className={`font-bold text-gray-900 mb-3 ${
+        isFeatured ? 'text-2xl' : 'text-xl'
+      }`}>
+        {project.title}
+      </h3>
+      
+      <p className="text-gray-600 mb-6 leading-relaxed">
+        {project.description}
+      </p>
+      
+      <div className="flex flex-wrap gap-2 mb-6">
+        {project.technologies.map((tech) => (
+          <span
+            key={tech}
+            className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+      
+      <div className="flex space-x-4">
+        <Button
+          variant="outline"
+          size="sm"
+          className="flex items-center space-x-2 border-gray-300 hover:border-gray-500"
+          onClick={() => window.open(project.liveUrl, '_blank')}
+        >
+          <ExternalLink className="w-4 h-4" />
+          <span>Live Demo</span>
+        </Button>
+        
+        <Button
+          variant="outline"
+          size="sm"
+          className="flex items-center space-x-2 border-gray-300 hover:border-gray-500"
+          onClick={() => window.open(project.githubUrl, '_blank')}
+        >
+          <Github className="w-4 h-4" />
+          <span>Code</span>
+        </Button>
+      </div>
+    </div>
+  </div>
+);
+
 const ProjectsSection = ({ data }) => {
   const { projects } = data;
   const featuredProjects = projects.filter(project => project.featured);
   const otherProjects = projects.filter(project => !project.featured);
-
-  const ProjectCard = ({ project, isFeatured = false }) => (
-    <div className={`group bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 ${
-      isFeatured ? 'md:col-span-2' : ''
-    }`}>
-      <div className="aspect-video overflow-hidden">
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-        />
-      </div>
-      
-      <div className="p-8">
-        <h3 className={`font-bold text-gray-900 mb-3 ${
-          isFeatured ? 'text-2xl' : 'text-xl'
-        }`}>
-          {project.title}
-        </h3>
-        
-        <p className="text-gray-600 mb-6 leading-relaxed">
-          {project.description}
-        </p>
-        
-        <div className="flex flex-wrap gap-2 mb-6">
-          {project.technologies.map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-        
-        <div className="flex space-x-4">
-          <Button
-            variant="outline"
-            size="sm"
-            className="flex items-center space-x-2 border-gray-300 hover:border-gray-500"
-            onClick={() => window.open(project.liveUrl, '_blank')}
-          >
-            <ExternalLink className="w-4 h-4" />
-            <span>Live Demo</span>
-          </Button>
-          
-          <Button
-            variant="outline"
-            size="sm"
-            className="flex items-center space-x-2 border-gray-300 hover:border-gray-500"
-            onClick={() => window.open(project.githubUrl, '_blank')}
-          >
-            <Github className="w-4 h-4" />
-            <span>Code</span>
-          </Button>
-        </div>
-      </div>
-    </div>
-  );
 
   return (
     <div className="space-y-12">
