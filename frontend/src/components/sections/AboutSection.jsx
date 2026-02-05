@@ -46,7 +46,7 @@ const AboutSection = ({ data }) => {
 
         <div className="text-center">
           <p className="text-xl text-gray-600 italic">
-            "{personal.tagline}"
+            &ldquo;{personal.tagline}&rdquo;
           </p>
         </div>
       </div>
