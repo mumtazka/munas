@@ -16,55 +16,56 @@ const PortfolioLayout = () => {
   const contentRef = useRef(null);
 
   useEffect(() => {
-    const setupAnimations = () => {
-      // Hero image animation on scroll
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: mainRef.current,
-          start: "top top",
-          end: "+=100vh",
-          scrub: 1,
-          pin: false,
-        }
-      })
-      .to(heroImageRef.current, {
-        scale: 0.4,
-        x: -200,
-        y: -100,
-        duration: 1,
-        ease: "power2.out"
-      })
-      .to(sidebarRef.current, {
-        x: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: "power2.out"
-      }, "-=0.5");
+    // Temporarily disable GSAP animations for debugging
+    // const setupAnimations = () => {
+    //   // Hero image animation on scroll
+    //   gsap.timeline({
+    //     scrollTrigger: {
+    //       trigger: mainRef.current,
+    //       start: "top top",
+    //       end: "+=100vh",
+    //       scrub: 1,
+    //       pin: false,
+    //     }
+    //   })
+    //   .to(heroImageRef.current, {
+    //     scale: 0.4,
+    //     x: -200,
+    //     y: -100,
+    //     duration: 1,
+    //     ease: "power2.out"
+    //   })
+    //   .to(sidebarRef.current, {
+    //     x: 0,
+    //     opacity: 1,
+    //     duration: 0.8,
+    //     ease: "power2.out"
+    //   }, "-=0.5");
 
-      // Content fade in
-      gsap.fromTo(contentRef.current, 
-        { opacity: 0, x: 50 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: contentRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-          }
-        }
-      );
-    };
+    //   // Content fade in
+    //   gsap.fromTo(contentRef.current, 
+    //     { opacity: 0, x: 50 },
+    //     {
+    //       opacity: 1,
+    //       x: 0,
+    //       duration: 1,
+    //       ease: "power2.out",
+    //       scrollTrigger: {
+    //         trigger: contentRef.current,
+    //         start: "top 80%",
+    //         end: "bottom 20%",
+    //       }
+    //     }
+    //   );
+    // };
 
-    // Small delay to ensure DOM is ready
-    const timer = setTimeout(setupAnimations, 100);
+    // // Small delay to ensure DOM is ready
+    // const timer = setTimeout(setupAnimations, 100);
 
-    return () => {
-      clearTimeout(timer);
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
+    // return () => {
+    //   clearTimeout(timer);
+    //   ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    // };
   }, []);
 
   return (
