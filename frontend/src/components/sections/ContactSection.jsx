@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
-import { useToast } from '../ui/use-toast';
+import { useToast } from '../../hooks/use-toast';
 
 const ContactSection = ({ data }) => {
   const { personal } = data;
