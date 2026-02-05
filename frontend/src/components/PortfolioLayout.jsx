@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+// Temporary disable GSAP to debug
+// import { gsap } from 'gsap';
+// import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import LeftSidebar from './LeftSidebar';
 import RightContent from './RightContent';
 import AIAssistant from './AIAssistant';
 import { portfolioData } from '../mock/portfolioData';
 
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger);
 
 const PortfolioLayout = () => {
   const mainRef = useRef(null);
